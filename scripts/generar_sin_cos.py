@@ -20,10 +20,10 @@ def main():
     for n in xrange(0,360):
         nsin = sin(radians(n)) 
         ncos = cos(radians(n))
-        fsin.write('9\'b%s : out = 16\'b%s;' % ('{:09b}'.format(n), toBinary(nsin)))
-        fsin.write('\n')
-        fcos.write('9\'b%s : out = 16\'b%s;' % ('{:09b}'.format(n), toBinary(ncos)))
-        fcos.write('\n')
+        fsin.write(toBinary(nsin))
+        fsin.write(' ')
+        fcos.write(toBinary(ncos))
+        fcos.write(' ')
 
 if __name__ == '__main__':
     main()
