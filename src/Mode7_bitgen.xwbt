@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=E:\Mode7\src\Mode7.ncd
+OUTFILE=E:\Mode7\src\Mode7.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=E:\Mode7\src
+LICENSE=WebPack
+USER_INFO=210834016_0_0_314

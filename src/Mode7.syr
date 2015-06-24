@@ -1,0 +1,492 @@
+Release 14.1 - xst P.15xf (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> Reading design: Mode7.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Mode7.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Mode7"
+Output Format                      : NGC
+Target Device                      : xc6slx16-3-csg324
+
+---- Source Options
+Top Module Name                    : Mode7
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "E:\Mode7\src\vsync_unit.v" into library work
+Parsing module <vga_sync>.
+Analyzing Verilog file "E:\Mode7\src\Mode7.v" into library work
+Parsing module <Mode7>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <Mode7>.
+Reading initialization file \"cos.bin\".
+Reading initialization file \"sin.bin\".
+Reading initialization file \"bitmap.bin\".
+
+Elaborating module <vga_sync>.
+WARNING:HDLCompiler:413 - "E:\Mode7\src\vsync_unit.v" Line 129: Result of 32-bit expression is truncated to fit in 10-bit target.
+WARNING:HDLCompiler:413 - "E:\Mode7\src\vsync_unit.v" Line 130: Result of 32-bit expression is truncated to fit in 10-bit target.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <Mode7>.
+    Related source file is "E:\Mode7\src\Mode7.v".
+        entTabla = 360
+        salidaTabla = 16
+        tamanioColor = 8
+        entradaImagen = 4096
+WARNING:Xst:647 - Input <color> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:2999 - Signal 'array_img', unconnected in block 'Mode7', is tied to its initial value.
+    Found 4096x8-bit single-port Read Only RAM <Mram_array_img> for signal <array_img>.
+    Found 8-bit register for signal <rgb>.
+    Found 9-bit adder for signal <n0032[8:0]> created at line 88.
+    Found 16-bit adder for signal <n0025> created at line 89.
+    Found 10-bit comparator greater for signal <pixel_x[9]_GND_1_o_LessThan_10_o> created at line 88
+    Found 10-bit comparator greater for signal <pixel_y[9]_GND_1_o_LessThan_11_o> created at line 88
+    Found 10-bit comparator greater for signal <pixel_x[9]_PWR_1_o_LessThan_14_o> created at line 90
+    Found 10-bit comparator greater for signal <pixel_y[9]_GND_1_o_LessThan_15_o> created at line 90
+    Summary:
+	inferred   1 RAM(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   8 D-type flip-flop(s).
+	inferred   4 Comparator(s).
+Unit <Mode7> synthesized.
+
+Synthesizing Unit <vga_sync>.
+    Related source file is "E:\Mode7\src\vsync_unit.v".
+    Found 10-bit register for signal <v_count_reg>.
+    Found 10-bit register for signal <h_count_reg>.
+    Found 2-bit register for signal <mod2_reg>.
+    Found 1-bit register for signal <v_sync_reg>.
+    Found 1-bit register for signal <h_sync_reg>.
+    Found 1-bit register for signal <pixel_tick>.
+    Found 11-bit subtractor for signal <GND_2_o_GND_2_o_sub_24_OUT> created at line 129.
+    Found 11-bit subtractor for signal <GND_2_o_GND_2_o_sub_28_OUT> created at line 130.
+    Found 2-bit adder for signal <mod2_next> created at line 88.
+    Found 10-bit adder for signal <h_count_reg[9]_GND_2_o_add_7_OUT> created at line 106.
+    Found 10-bit adder for signal <v_count_reg[9]_GND_2_o_add_10_OUT> created at line 115.
+    Found 10-bit comparator lessequal for signal <n0016> created at line 120
+    Found 10-bit comparator lessequal for signal <n0018> created at line 120
+    Found 10-bit comparator lessequal for signal <n0021> created at line 122
+    Found 10-bit comparator lessequal for signal <n0023> created at line 122
+    Found 10-bit comparator greater for signal <h_count_reg[9]_PWR_2_o_LessThan_18_o> created at line 125
+    Found 10-bit comparator greater for signal <v_count_reg[9]_GND_2_o_LessThan_19_o> created at line 125
+    Found 10-bit comparator greater for signal <GND_2_o_h_count_reg[9]_LessThan_30_o> created at line 131
+    Found 10-bit comparator lessequal for signal <n0037> created at line 131
+    Found 10-bit comparator greater for signal <GND_2_o_v_count_reg[9]_LessThan_32_o> created at line 131
+    Found 10-bit comparator lessequal for signal <n0042> created at line 131
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred  25 D-type flip-flop(s).
+	inferred  10 Comparator(s).
+	inferred   5 Multiplexer(s).
+Unit <vga_sync> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 4096x8-bit single-port Read Only RAM                  : 1
+# Adders/Subtractors                                   : 7
+ 10-bit adder                                          : 2
+ 11-bit subtractor                                     : 2
+ 16-bit adder                                          : 1
+ 2-bit adder                                           : 1
+ 9-bit adder                                           : 1
+# Registers                                            : 7
+ 1-bit register                                        : 3
+ 10-bit register                                       : 2
+ 2-bit register                                        : 1
+ 8-bit register                                        : 1
+# Comparators                                          : 14
+ 10-bit comparator greater                             : 8
+ 10-bit comparator lessequal                           : 6
+# Multiplexers                                         : 5
+ 1-bit 2-to-1 multiplexer                              : 1
+ 10-bit 2-to-1 multiplexer                             : 2
+ 32-bit 2-to-1 multiplexer                             : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <Mode7>.
+INFO:Xst:3213 - HDL ADVISOR - Characteristics of the register <rgb_reg> prevent it from being combined with the RAM <Mram_array_img> for implementation as read-only block RAM.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 4096-word x 8-bit                   |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <n0025>         |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to internal node          |          |
+    -----------------------------------------------------------------------
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_array_img> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+Unit <Mode7> synthesized (advanced).
+
+Synthesizing (advanced) Unit <vga_sync>.
+The following registers are absorbed into counter <mod2_reg>: 1 register on signal <mod2_reg>.
+The following registers are absorbed into counter <v_count_reg>: 1 register on signal <v_count_reg>.
+The following registers are absorbed into counter <h_count_reg>: 1 register on signal <h_count_reg>.
+Unit <vga_sync> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 4096x8-bit single-port distributed Read Only RAM      : 1
+# Adders/Subtractors                                   : 4
+ 11-bit subtractor                                     : 2
+ 12-bit adder                                          : 1
+ 9-bit adder                                           : 1
+# Counters                                             : 3
+ 10-bit up counter                                     : 2
+ 2-bit up counter                                      : 1
+# Registers                                            : 11
+ Flip-Flops                                            : 11
+# Comparators                                          : 14
+ 10-bit comparator greater                             : 8
+ 10-bit comparator lessequal                           : 6
+# Multiplexers                                         : 3
+ 1-bit 2-to-1 multiplexer                              : 1
+ 32-bit 2-to-1 multiplexer                             : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <Mode7> ...
+
+Optimizing unit <vga_sync> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Mode7, actual ratio is 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 33
+ Flip-Flops                                            : 33
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : Mode7.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 151
+#      GND                         : 1
+#      INV                         : 2
+#      LUT2                        : 10
+#      LUT3                        : 27
+#      LUT4                        : 9
+#      LUT5                        : 9
+#      LUT6                        : 39
+#      MUXCY                       : 25
+#      MUXF7                       : 8
+#      VCC                         : 1
+#      XORCY                       : 20
+# FlipFlops/Latches                : 33
+#      FDC                         : 5
+#      FDCE                        : 20
+#      FDRE                        : 8
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 21
+#      IBUF                        : 9
+#      OBUF                        : 12
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx16csg324-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              33  out of  18224     0%  
+ Number of Slice LUTs:                   96  out of   9112     1%  
+    Number used as Logic:                96  out of   9112     1%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     96
+   Number with an unused Flip Flop:      63  out of     96    65%  
+   Number with an unused LUT:             0  out of     96     0%  
+   Number of fully used LUT-FF pairs:    33  out of     96    34%  
+   Number of unique control sets:         4
+
+IO Utilization: 
+ Number of IOs:                          30
+ Number of bonded IOBs:                  22  out of    232     9%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 33    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 7.467ns (Maximum Frequency: 133.926MHz)
+   Minimum input arrival time before clock: 4.845ns
+   Maximum output required time after clock: 8.182ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 7.467ns (frequency: 133.926MHz)
+  Total number of paths / destination ports: 13407 / 69
+-------------------------------------------------------------------------
+Delay:               7.467ns (Levels of Logic = 7)
+  Source:            vga_unit/v_count_reg_4 (FF)
+  Destination:       rgb_reg_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: vga_unit/v_count_reg_4 to rgb_reg_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             6   0.447   1.089  vga_unit/v_count_reg_4 (vga_unit/v_count_reg_4)
+     LUT5:I0->O            4   0.203   0.684  vga_unit/Mmux_n00481014_SW0 (N14)
+     LUT6:I5->O           20   0.205   1.093  vga_unit/Mmux_n00481014 (vga_unit/Mmux_n0048101)
+     LUT6:I5->O            5   0.205   0.715  vga_unit/Mmux_n004791 (pixel_x<8>)
+     LUT6:I5->O            1   0.205   0.580  Madd_n0025_Madd_cy<8>1 (Madd_n0025_Madd_cy<8>)
+     LUT6:I5->O            1   0.205   0.580  Madd_n0025_Madd_xor<9>11 (n0025<9>)
+     LUT2:I1->O            8   0.205   0.802  N71 (_n0037<0>)
+     MUXF7:S->O            1   0.148   0.000  rgb_reg_0_glue_set (rgb_reg_0_glue_set)
+     FDRE:D                    0.102          rgb_reg_0
+    ----------------------------------------
+    Total                      7.467ns (1.925ns logic, 5.542ns route)
+                                       (25.8% logic, 74.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 377 / 41
+-------------------------------------------------------------------------
+Offset:              4.845ns (Levels of Logic = 7)
+  Source:            offsetx<6> (PAD)
+  Destination:       rgb_reg_0 (FF)
+  Destination Clock: clk rising
+
+  Data Path: offsetx<6> to rgb_reg_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   1.222   0.650  offsetx_6_IBUF (Madd_n0032[8:0]_cy<6>)
+     INV:I->O              2   0.206   0.864  Madd_n0032[8:0]_xor<6>11_INV_0 (n0032[8:0]<6>)
+     LUT4:I0->O            1   0.203   0.000  Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_lut<3> (Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_lut<3>)
+     MUXCY:S->O            1   0.172   0.000  Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_cy<3> (Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_cy<3>)
+     MUXCY:CI->O           9   0.019   0.000  Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_cy<4> (Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_cy<4>)
+     MUXCY:CI->O           1   0.019   0.000  _n00415_cy (Mcompar_pixel_x[9]_GND_1_o_LessThan_10_o_cy<4>_l1)
+     MUXCY:CI->O           8   0.258   0.802  _n00415_cy1 (_n0041)
+     FDRE:R                    0.430          rgb_reg_0
+    ----------------------------------------
+    Total                      4.845ns (2.529ns logic, 2.316ns route)
+                                       (52.2% logic, 47.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 39 / 12
+-------------------------------------------------------------------------
+Offset:              8.182ns (Levels of Logic = 5)
+  Source:            vga_unit/v_count_reg_4 (FF)
+  Destination:       ptick (PAD)
+  Source Clock:      clk rising
+
+  Data Path: vga_unit/v_count_reg_4 to ptick
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             6   0.447   1.089  vga_unit/v_count_reg_4 (vga_unit/v_count_reg_4)
+     LUT5:I0->O            4   0.203   0.684  vga_unit/Mmux_n00481014_SW0 (N14)
+     LUT6:I5->O           20   0.205   1.093  vga_unit/Mmux_n00481014 (vga_unit/Mmux_n0048101)
+     LUT6:I5->O            3   0.205   0.651  vga_unit/GND_2_o_v_count_reg[9]_AND_11_o (vga_unit/GND_2_o_v_count_reg[9]_AND_11_o)
+     LUT2:I1->O            9   0.205   0.829  vga_unit/Mmux_p_tick11 (ptick_OBUF)
+     OBUF:I->O                 2.571          ptick_OBUF (ptick)
+    ----------------------------------------
+    Total                      8.182ns (3.836ns logic, 4.346ns route)
+                                       (46.9% logic, 53.1% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    7.467|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 5.59 secs
+ 
+--> 
+
+Total memory usage is 255040 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    4 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

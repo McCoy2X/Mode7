@@ -1,0 +1,44 @@
+//! **************************************************************************
+// Written by: Map P.15xf on Wed Jun 24 13:19:47 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "ptick" LOCATE = SITE "U15" LEVEL 1;
+COMP "clk" LOCATE = SITE "V10" LEVEL 1;
+COMP "rgb<0>" LOCATE = SITE "U7" LEVEL 1;
+COMP "rgb<1>" LOCATE = SITE "V7" LEVEL 1;
+COMP "rgb<2>" LOCATE = SITE "N7" LEVEL 1;
+COMP "offsetx<0>" LOCATE = SITE "T10" LEVEL 1;
+COMP "rgb<3>" LOCATE = SITE "P8" LEVEL 1;
+COMP "offsetx<1>" LOCATE = SITE "T9" LEVEL 1;
+COMP "rgb<4>" LOCATE = SITE "T6" LEVEL 1;
+COMP "offsetx<2>" LOCATE = SITE "V9" LEVEL 1;
+COMP "rgb<5>" LOCATE = SITE "V6" LEVEL 1;
+COMP "offsetx<3>" LOCATE = SITE "M8" LEVEL 1;
+COMP "rgb<6>" LOCATE = SITE "R7" LEVEL 1;
+COMP "offsetx<4>" LOCATE = SITE "N8" LEVEL 1;
+COMP "rgb<7>" LOCATE = SITE "T7" LEVEL 1;
+COMP "offsetx<5>" LOCATE = SITE "U8" LEVEL 1;
+COMP "offsetx<6>" LOCATE = SITE "V8" LEVEL 1;
+COMP "offsetx<7>" LOCATE = SITE "T5" LEVEL 1;
+COMP "hsync" LOCATE = SITE "N6" LEVEL 1;
+COMP "vsync" LOCATE = SITE "P7" LEVEL 1;
+COMP "reset" LOCATE = SITE "B8" LEVEL 1;
+COMP "von" LOCATE = SITE "V15" LEVEL 1;
+TIMEGRP sys_clk_pin = BEL "vga_unit/h_count_reg_9" BEL
+        "vga_unit/h_count_reg_8" BEL "vga_unit/h_count_reg_7" BEL
+        "vga_unit/h_count_reg_6" BEL "vga_unit/h_count_reg_5" BEL
+        "vga_unit/h_count_reg_4" BEL "vga_unit/h_count_reg_3" BEL
+        "vga_unit/h_count_reg_2" BEL "vga_unit/h_count_reg_1" BEL
+        "vga_unit/h_count_reg_0" BEL "vga_unit/v_count_reg_9" BEL
+        "vga_unit/v_count_reg_8" BEL "vga_unit/v_count_reg_7" BEL
+        "vga_unit/v_count_reg_6" BEL "vga_unit/v_count_reg_5" BEL
+        "vga_unit/v_count_reg_4" BEL "vga_unit/v_count_reg_3" BEL
+        "vga_unit/v_count_reg_2" BEL "vga_unit/v_count_reg_1" BEL
+        "vga_unit/v_count_reg_0" BEL "vga_unit/mod2_reg_1" BEL
+        "vga_unit/mod2_reg_0" BEL "vga_unit/h_sync_reg" BEL
+        "vga_unit/v_sync_reg" BEL "vga_unit/pixel_tick" BEL "rgb_reg_0" BEL
+        "rgb_reg_1" BEL "rgb_reg_2" BEL "rgb_reg_3" BEL "rgb_reg_4" BEL
+        "rgb_reg_5" BEL "rgb_reg_6" BEL "rgb_reg_7" BEL "clk_BUFGP/BUFG";
+SCHEMATIC END;
+
