@@ -42,8 +42,10 @@ module Mode7
 	reg [9:0] offsety, offsety_next;
 	reg [21:0] ctr_div, ctr_next;
 	wire video_on, pixel_tick;
-	reg [7:0] rgb_out;
+	wire [7:0] rgb_out;
 	reg [7:0] rgb_reg;
+	
+	wire [23:0] X, Y;
 	
 	//wire clkdiv;
 
@@ -51,23 +53,26 @@ module Mode7
 		.video_on(video_on), .p_tick(pixel_tick),
 		.pixel_x(pixel_x), .pixel_y(pixel_y));
 		
-	reg [15:0] sen, cos;
-	wire [8:0] angle;
-	reg [15:0] array_sen [359:0];
-	reg [15:0] array_cos [359:0];
-	reg [7:0] array_img [4095:0];
-	
-	initial begin
-		$readmemb("cos.bin", array_cos, 0, 359);
-		$readmemb("sin.bin", array_sen, 0, 359);
-		$readmemb("bitmap.bin", array_img, 0, 4095);
-	end
+	getXY getXYColor (
+		.x(pixel_x), 
+		.y(pixel_y), 
+		.originx(32), 
+		.originy(32), 
+		.angle({2'b0, offsetx}), 
+		.offsetx(16'b0), 
+		.offsety(16'b0), 
+		.texturew(64), 
+		.textureh(64), 
+		.X(X),
+		.Y(Y),
+		.color(rgb_out));
 		
-	always @(posedge clk)
+	always @(posedge clk) begin
 		if (pixel_tick)
 			rgb_reg <= rgb_out;
+	end
 		
-	always @(posedge clk)
+	always @(posedge clk) begin
 		if (reset)
 			begin
 				ctr_div <= 0;
@@ -78,27 +83,20 @@ module Mode7
 				ctr_div <= ctr_next;
 				offsety <= offsety_next;
 			end
+	end
 		
-	always @*
-		begin
-			ctr_next = ctr_div;
+	always @* begin
+		ctr_next = ctr_div;
+		offsety_next = offsety;
+		
+		/*if (ctr_div == 22'd2097152) begin
+			ctr_next = 0;
+			offsety_next = offsety + 1;
+		end else	begin
+			ctr_next = ctr_div + 1;
 			offsety_next = offsety;
-			
-			rgb_out = 8'b00000000;
-			if(pixel_x < 64 + offsetx && pixel_y < 64) begin
-				rgb_out = array_img[pixel_x + pixel_y * 64];
-			end else if(pixel_x < 640 && pixel_y < 480) begin
-				rgb_out = 8'b11111111;
-			end
-						
-			/*if (ctr_div == 22'd2097152) begin
-				ctr_next = 0;
-				offsety_next = offsety + 1;
-			end else	begin
-				ctr_next = ctr_div + 1;
-				offsety_next = offsety;
-			end*/
-		end
+		end*/
+	end
 
 	assign rgb = rgb_reg;
 	assign ptick = pixel_tick;

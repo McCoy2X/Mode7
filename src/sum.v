@@ -1,13 +1,12 @@
 `timescale 1ns / 1ps
-`define UPPER_BOUND 16'b0111111111111111
-`define SATURATED 16'b1111111111111111
-module sum #(parameter SIZE=16)(
-    input [SIZE-1:0] a,
-    input [SIZE-1:0] b,
-    output reg [SIZE-1:0] out
-    );
-	 
-	 
+`define UPPER_BOUND 24'b011111111111111111111111
+`define SATURATED 24'b111111111111111111111111
+module sum #(parameter SIZE=24)(
+		input [SIZE-1:0] a,
+		input [SIZE-1:0] b,
+		output reg [SIZE-1:0] out
+   );	 
+	
 	always @(*)
 	begin
 		case({a[SIZE-1],b[SIZE-1]})

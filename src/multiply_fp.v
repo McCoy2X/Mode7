@@ -21,11 +21,11 @@
 `define K 8'b10000000
 `define Q 4'b1000
 
-module multiply_fp#(parameter SIZE=16,parameter INT_SIZE = 8, parameter DEC_SIZE = 8)(
-	input [SIZE-1:0] a,
-    input [SIZE-1:0] b,
-    output reg [SIZE-1:0] out
-    );
+module multiply_fp#(parameter SIZE=24,parameter INT_SIZE = 16, parameter DEC_SIZE = 8)(
+		input [SIZE-1:0] a,
+		input [SIZE-1:0] b,
+		output reg [SIZE-1:0] out
+	);
 	 
 	reg [SIZE*2-1:0] temp;
 	reg sign;
@@ -36,7 +36,6 @@ module multiply_fp#(parameter SIZE=16,parameter INT_SIZE = 8, parameter DEC_SIZE
 		temp = (temp >> `Q);
 				
 		out = {sign, temp[SIZE-2:0]};
-		
 	end
 
 endmodule
