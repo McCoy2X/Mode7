@@ -23,6 +23,7 @@ module getXY(
 		input wire [15:0] originx, originy,
 		input wire [15:0] offsetx, offsety,
 		input wire [15:0] texturew, textureh,
+		input wire [23:0] scalex, scaley,
 		input wire [9:0] angle,
 		output reg [7:0] color,
 		output wire [23:0] X, Y
@@ -50,8 +51,14 @@ module getXY(
 	assign ca = array_sen[angle];
 	assign da = array_cos[angle];
 	
+	wire [23:0]XplusOffsetX;
+	wire [23:0]YplusOffsetY;
 	wire [23:0]Xminusx0;
 	wire [23:0]Yminusy0;
+	wire [23:0]amulScaleX;
+	wire [23:0]bmulScaleY;
+	wire [23:0]cmulScaleX;
+	wire [23:0]dmulScaleY;
 	wire [23:0]amulXminusx0;
 	wire [23:0]bmulYminusy0;
 	wire [23:0]cmulXminusx0;
@@ -63,13 +70,21 @@ module getXY(
 	wire [23:0]resX;
 	wire [23:0]resY;
 	
-	sum SumXminusx0 (.a({x, 8'b00000000}), .b({1'b1, originx[14:0], 8'b00000000}), .out(Xminusx0));
-	sum SumYminusy0 (.a({y, 8'b00000000}), .b({1'b1, originy[14:0], 8'b00000000}), .out(Yminusy0));
+	sum sumXplusOffsetX (.a({x, 8'b00000000}), .b({1'b1 ^ originx[15], offsetx[14:0], 8'b00000000}), .out(XplusOffsetX));
+	sum sumYplusOffsetY (.a({y, 8'b00000000}), .b({1'b1 ^ originx[15], offsety[14:0], 8'b00000000}), .out(YplusOffsetY));
 	
-	multiply_fp MulamulXminusx0 (.a({aa[15], 8'b00000000, aa[14:0]}), .b(Xminusx0), .out(amulXminusx0));
-	multiply_fp MulbmulXminusx0 (.a({ba[15], 8'b00000000, ba[14:0]}), .b(Yminusy0), .out(bmulYminusy0));
-	multiply_fp MulcmulYminusy0 (.a({1'b1, 8'b00000000, ca[14:0]}), .b(Xminusx0), .out(cmulXminusx0));
-	multiply_fp MuldmulYminusy0 (.a({da[15], 8'b00000000, da[14:0]}), .b(Yminusy0), .out(dmulYminusy0));
+	sum SumXminusx0 (.a(XplusOffsetX), .b({1'b1 ^ originx[15], originx[14:0], 8'b00000000}), .out(Xminusx0));
+	sum SumYminusy0 (.a(YplusOffsetY), .b({1'b1 ^ originy[15], originy[14:0], 8'b00000000}), .out(Yminusy0));
+	
+	multiply_fp MulamulScaleX (.a({aa[15], 8'b00000000, aa[14:0]}), .b(scalex), .out(amulScaleX));
+	multiply_fp MulbmulScaleY (.a({ba[15], 8'b00000000, ba[14:0]}), .b(scaley), .out(bmulScaleY));
+	multiply_fp MulcmulScaleX (.a({1'b1 ^ ca[15], 8'b00000000, ca[14:0]}), .b(scalex), .out(cmulScaleX));
+	multiply_fp MuldmulScaleY (.a({da[15], 8'b00000000, da[14:0]}), .b(scaley), .out(dmulScaleY));
+	
+	multiply_fp MulamulXminusx0 (.a(amulScaleX), .b(Xminusx0), .out(amulXminusx0));
+	multiply_fp MulbmulXminusx0 (.a(bmulScaleY), .b(Yminusy0), .out(bmulYminusy0));
+	multiply_fp MulcmulYminusy0 (.a(cmulScaleX), .b(Xminusx0), .out(cmulXminusx0));
+	multiply_fp MuldmulYminusy0 (.a(dmulScaleY), .b(Yminusy0), .out(dmulYminusy0));
 	
 	sum SumresSumAB (.a(amulXminusx0), .b(bmulYminusy0), .out(resSumAB));
 	sum SumresX (.a(resSumAB), .b({originx, 8'b00000000}), .out(resX));
@@ -82,9 +97,8 @@ module getXY(
 
 	always @* begin
 		color = 8'b00000000;
-		if(x < texturew && y < textureh) begin
+		if(resX[23:8] < texturew && resY[23:8] < textureh) begin
 			color = array_img[resX[23:8] + resY[23:8] * 64];
-			//color = array_img[x + y * 64];
 		end else if(x < 640 && y < 480) begin
 			color = 8'b11111111;
 		end
