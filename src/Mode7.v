@@ -29,8 +29,9 @@ module Mode7
 	(
 		input clk,
 		input reset,
-		input [7:0] color,
-		input [7:0] offsetx,
+		input [7:0] switches,
+		input btn_plus,
+		input btn_minus,
 		output hsync,
 		output vsync,
 		output ptick,
@@ -38,12 +39,14 @@ module Mode7
 		output [7:0] rgb
    );
 
-	wire [9:0] pixel_x, pixel_y;
-	reg [9:0] offsety, offsety_next;
-	reg [21:0] ctr_div, ctr_next;
 	wire video_on, pixel_tick;
+	
+	wire [9:0] pixel_x, pixel_y;
+	
 	wire [7:0] rgb_out;
 	reg [7:0] rgb_reg;
+	
+	wire [23:0] offsetx, offsety, originx, originy, texturew, textureh, scalex, scaley, angle;
 	
 	wire [23:0] X, Y;
 	
@@ -53,18 +56,34 @@ module Mode7
 		.video_on(video_on), .p_tick(pixel_tick),
 		.pixel_x(pixel_x), .pixel_y(pixel_y));
 		
+	valueManager values (
+		.clk(clk),
+		.reset(reset),
+		.switches(switches),
+		.btn_plus(btn_plus),
+		.btn_minus(btn_minus),
+		.offsetx(offsetx),
+		.offsety(offsety),
+		.originx(originx),
+		.originy(originy),
+		.texturew(texturew),
+		.textureh(textureh),
+		.scalex(scalex),
+		.scaley(scaley),
+		.angle(angle));
+		
 	getXY getXYColor (
 		.x(pixel_x), 
 		.y(pixel_y), 
-		.originx(32), 
-		.originy(32), 
-		.angle({2'b0, offsetx}), 
-		.offsetx({8'b0, offsetx}), 
-		.offsety({8'b0, offsetx}), 
-		.texturew(64), 
-		.textureh(64), 
-		.scalex({8'b0, offsetx, 8'b0}), 
-		.scaley({8'b0, offsetx, 8'b0}), 
+		.originx(originx[23:8]), 
+		.originy(originy[23:8]), 
+		.offsetx(offsetx[23:8]), 
+		.offsety(offsety[23:8]), 
+		.texturew(texturew[23:8]), 
+		.textureh(textureh[23:8]), 
+		.scalex(scalex), 
+		.scaley(scaley), 
+		.angle(angle[23:8]), 
 		.X(X),
 		.Y(Y),
 		.color(rgb_out));
@@ -72,32 +91,6 @@ module Mode7
 	always @(posedge clk) begin
 		if (pixel_tick)
 			rgb_reg <= rgb_out;
-	end
-		
-	always @(posedge clk) begin
-		if (reset)
-			begin
-				ctr_div <= 0;
-				offsety <= 0;
-			end
-		else
-			begin
-				ctr_div <= ctr_next;
-				offsety <= offsety_next;
-			end
-	end
-		
-	always @* begin
-		ctr_next = ctr_div;
-		offsety_next = offsety;
-		
-		/*if (ctr_div == 22'd2097152) begin
-			ctr_next = 0;
-			offsety_next = offsety + 1;
-		end else	begin
-			ctr_next = ctr_div + 1;
-			offsety_next = offsety;
-		end*/
 	end
 
 	assign rgb = rgb_reg;

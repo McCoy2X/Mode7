@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 `define UPPER_BOUND 24'b011111111111111111111111
-`define SATURATED 24'b111111111111111111111111
+`define SATURATED 24'b011111111111111111111111
 module sum #(parameter SIZE=24)(
 		input [SIZE-1:0] a,
 		input [SIZE-1:0] b,

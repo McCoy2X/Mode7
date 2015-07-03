@@ -24,7 +24,7 @@ module getXY(
 		input wire [15:0] offsetx, offsety,
 		input wire [15:0] texturew, textureh,
 		input wire [23:0] scalex, scaley,
-		input wire [9:0] angle,
+		input wire [15:0] angle,
 		output reg [7:0] color,
 		output wire [23:0] X, Y
 	);
@@ -70,8 +70,8 @@ module getXY(
 	wire [23:0]resX;
 	wire [23:0]resY;
 	
-	sum sumXplusOffsetX (.a({x, 8'b00000000}), .b({1'b1 ^ originx[15], offsetx[14:0], 8'b00000000}), .out(XplusOffsetX));
-	sum sumYplusOffsetY (.a({y, 8'b00000000}), .b({1'b1 ^ originx[15], offsety[14:0], 8'b00000000}), .out(YplusOffsetY));
+	sum SumXplusOffsetX (.a({x, 8'b00000000}), .b({1'b1 ^ originx[15], offsetx[14:0], 8'b00000000}), .out(XplusOffsetX));
+	sum SumYplusOffsetY (.a({y, 8'b00000000}), .b({1'b1 ^ originx[15], offsety[14:0], 8'b00000000}), .out(YplusOffsetY));
 	
 	sum SumXminusx0 (.a(XplusOffsetX), .b({1'b1 ^ originx[15], originx[14:0], 8'b00000000}), .out(Xminusx0));
 	sum SumYminusy0 (.a(YplusOffsetY), .b({1'b1 ^ originy[15], originy[14:0], 8'b00000000}), .out(Yminusy0));
