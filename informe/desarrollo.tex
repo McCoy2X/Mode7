@@ -50,11 +50,23 @@ $
 \end{figure}
 
 \subsection{Detalles de la implementación}
-Uno de los primeros temas a solucionar fue cómo calcular los valores de las funciones seno y coseno. La solución consistió en guardar en dos tablas $360$ valores correspondientes a parámetros angulares para dichas funciones (de 0 a 359 grados). Cada resultado se guardó en 16 bits en forma signo más magnitud, con 7 bits para la parte entera y 8 para la decimal. La imagen a cargar es de 64 por 64 pixeles, y cada pixel tiene tres bits para el canal rojo, tres bits para el verde y dos para el azul. Esto resulta en un bitmap que tiene 4096 valores de 8 bits. En la figura~\ref{fig:chess} se puede observar el bitmap utilizado 
+\subsubsection{Utilización de memoria}
+Uno de los primeros problemas a solucionar fue cómo calcular los valores de las funciones seno y coseno, ya que la fpga no posee una fpu. La solución consistió en guardar en dos tablas $360$ valores correspondientes a parámetros angulares para dichas funciones (de 0 a 359 grados). Cada resultado se guardó en 16 bits en forma signo más magnitud, con 7 bits para la parte entera y 8 para la decimal, lo que en total ocupó 720 bytes de memoria.
+\par La imagen a cargar, por otro lado, es de 64 por 64 pixeles, y cada pixel tiene tres bits para el canal rojo, tres bits para el verde y dos para el azul. Esto resulta en un bitmap que tiene 4096 valores de 8 bits y ocupa en memoria 4096 bytes. En la figura~\ref{fig:chess} se puede observar el bitmap utilizado. 
 
 \begin{figure}[h!]
  \caption{bitmap utilizado}
  \centering
-   \includegraphics[width=0.5\textwidth]{chessw.png}
+   \includegraphics[width=0.5\textwidth]{bitmap.png}
    \label{fig:chess}
 \end{figure}   
+
+\subsubsection{Paralelismo}
+En la implementación de las operaciones matemáticas necesarias para resolver el problema consideramos oportuno utilizar lógica combinacional para mayor velocidad. De haber usado máquina de estados, la velocidad de ejecución habría sido bastante menor.
+
+\subsubsection{Salida a video}
+blablabla
+
+\subsubsection{Otros detalles}
+
+blablabla!!!!!
