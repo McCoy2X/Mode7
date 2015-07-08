@@ -65,8 +65,23 @@ Uno de los primeros problemas a solucionar fue cómo calcular los valores de las
 En la implementación de las operaciones matemáticas necesarias para resolver el problema consideramos oportuno utilizar lógica combinacional para mayor velocidad. De haber usado máquina de estados, la velocidad de ejecución habría sido bastante menor.
 
 \subsubsection{Salida a video}
-blablabla
+blablabla?
 
 \subsubsection{Otros detalles}
+blablabla?
 
-blablabla!!!!!
+\subsection{Arquitectura}
+Podemos ver un esquema general en la figura~\ref{fig:arquitectura}
+\begin{figure}[h!]
+ \caption{Arquitectura general}
+ \centering
+   \includegraphics[width=0.75\textwidth]{arquitectura.png}
+   \label{fig:arquitectura}
+\end{figure} 
+
+\begin{itemize}
+\item \textbf{Mode 7} es el módulo central de la arquitectura, es decir, el encargado de hacer pedidos a los otros módulos y trasladar los resultados entre ellos. 
+\item El módulo \textbf{Value Manager} es el encargado de interpretar las entradas de los switches y botones, que sirven para cambiar entre las distintas transformaciones de la imagen.
+\item El módulo \textbf{Get XY} es el encargado de hacer operaciones sobre los pixeles, utilizando varias encarnaciones de los módulos \textbf{SUM} y \textbf{MULTIPLY}. Allí también se realiza el cargado de las tablas de seno, coseno y la imagen.
+\item Finalmente, el módulo \textbf{VGA SYNC} es el encargado de la salida al monitor.
+\end{itemize}
