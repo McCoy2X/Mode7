@@ -24,7 +24,8 @@ module valueManager(
 		input [7:0] switches,
 		input btn_plus,
 		input btn_minus,
-		output wire [23:0] offsetx, offsety, originx, originy, texturew, textureh, scalex, scaley, angle
+		output wire [23:0] offsetx, offsety, originx, originy, texturew, textureh, scalex, scaley, angle,
+		output wire [7:0] seg, [3:0]an
    );
 	 
 	wire level_plus, level_minus;
@@ -43,15 +44,23 @@ module valueManager(
 	wire [23:0] outputPlus;
 	wire [23:0] outputMinus;
 	 
-	reg [23:0] values[9:0];
+	reg [23:0] values[8:0];
 	
-	initial begin
-		//values[0] = {16'b0000000010000000, 8'b00000000};
-		//values[1] = {16'b0000000010000000, 8'b00000000};
-	end
+	wire [23:0] inputValue;
+	wire [14:0] integerPart;
+	wire [7:0] decPart;
+	
+	assign inputValue = values[switches[3:0]];
+	assign integerPart = {13'b00000000000000, switches[7:6]};
+	assign decPart = {6'b00000000000000, switches[5:4]};
+	
+//	sum valuePlusOne (.a(inputValue), .b({16'b0000000000000001, 8'b00000000}), .out(outputPlus));
+//	sum valueMinusOne (.a(inputValue), .b({16'b1000000000000001, 8'b00000000}), .out(outputMinus));
 
-	sum valuePlusOne (.a(values[switches[3:0]]), .b({16'b0000000000000001, 8'b00000000}), .out(outputPlus));
-	sum valueMinusOne (.a(values[switches[3:0]]), .b({16'b0000000000000001, 8'b00000000}), .out(outputMinus));
+	sum valuePlusOne (.a(inputValue), .b({1'b0, integerPart, decPart}), .out(outputPlus));
+	sum valueMinusOne (.a(inputValue), .b({1'b1, integerPart, decPart}), .out(outputMinus));
+	
+	sevenSegDisplay sevenDisplay (.clk(clk), .reset(reset), .value(inputValue), .seg(seg), .an(an));
 		
 	debounce debounce_plus (
 		.clk(clk),

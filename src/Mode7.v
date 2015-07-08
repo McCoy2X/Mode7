@@ -36,8 +36,10 @@ module Mode7
 		output vsync,
 		output ptick,
 		output von,
-		output [7:0] rgb
-   );
+		output [7:0] rgb,
+		output [7:0] seg,
+		output [3:0] an
+	);
 
 	wire video_on, pixel_tick;
 	
@@ -70,7 +72,9 @@ module Mode7
 		.textureh(textureh),
 		.scalex(scalex),
 		.scaley(scaley),
-		.angle(angle));
+		.angle(angle),
+		.seg(seg),
+		.an(an));
 		
 	getXY getXYColor (
 		.x({6'b000000,pixel_x}), 
@@ -83,7 +87,7 @@ module Mode7
 		.textureh(textureh[23:8]), 
 		.scalex(scalex), 
 		.scaley(scaley), 
-		.angle(angle[23:8]), 
+		.angle({1'b0, angle[22:8]} % 360), 
 		.X(X),
 		.Y(Y),
 		.color(rgb_out));

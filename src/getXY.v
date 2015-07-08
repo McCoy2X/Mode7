@@ -97,10 +97,12 @@ module getXY(
 
 	always @* begin
 		color = 8'b00000000;
-		if(resX[23:8] < texturew && resY[23:8] < textureh) begin
-			color = array_img[resX[23:8] + resY[23:8] * 64];
-		end else if(x < 640 && y < 480) begin
-			color = 8'b11111111;
+		if(x < 640 && y < 480) begin
+			if(resX[23:8] < texturew && resY[23:8] < textureh) begin
+				color = array_img[resX[23:8] + resY[23:8] * 64];
+			end else begin
+				color = 8'b11111111;
+			end
 		end
 	end
 
