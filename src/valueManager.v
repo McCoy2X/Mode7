@@ -50,8 +50,8 @@ module valueManager(
 		//values[1] = {16'b0000000010000000, 8'b00000000};
 	end
 
-	sum valuePlusOne (.a(values[switches[3:0]]), .b({16'b0000000000000000, 8'b00000000}), .out(outputPlus));
-	sum valueMinusOne (.a(values[switches[3:0]]), .b({16'b1000000100000000, 8'b00000000}), .out(outputMinus));
+	sum valuePlusOne (.a(values[switches[3:0]]), .b({16'b0000000000000001, 8'b00000000}), .out(outputPlus));
+	sum valueMinusOne (.a(values[switches[3:0]]), .b({16'b0000000000000001, 8'b00000000}), .out(outputMinus));
 		
 	debounce debounce_plus (
 		.clk(clk),

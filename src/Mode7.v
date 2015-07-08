@@ -73,8 +73,8 @@ module Mode7
 		.angle(angle));
 		
 	getXY getXYColor (
-		.x(pixel_x), 
-		.y(pixel_y), 
+		.x({6'b000000,pixel_x}), 
+		.y({6'b000000,pixel_y}), 
 		.originx(originx[23:8]), 
 		.originy(originy[23:8]), 
 		.offsetx(offsetx[23:8]), 
