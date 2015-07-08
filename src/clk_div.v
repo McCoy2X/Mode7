@@ -26,7 +26,7 @@ module clk_div
 );
 	
 	localparam in_frequency = 32'd100000000;
-	localparam out_frequency = 32'd60;
+	localparam out_frequency = 32'd50;
 	localparam counter_bits = 40;
 	
 	reg [counter_bits-1:0] counter_reg;
