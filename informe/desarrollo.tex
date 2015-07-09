@@ -65,10 +65,7 @@ Uno de los primeros problemas a solucionar fue cómo calcular los valores de las
 En la implementación de las operaciones matemáticas necesarias para resolver el problema consideramos oportuno utilizar lógica combinacional para mayor velocidad. De haber usado máquina de estados, la velocidad de ejecución habría sido bastante menor.
 
 \subsubsection{Salida a video}
-blablabla?
-
-\subsubsection{Otros detalles}
-blablabla?
+La implementación de la salida a video está basada en la explicación brindada en el libro \textbf{Verilog by Example: A Concise Introduction for FPGA Design}
 
 \subsection{Arquitectura}
 Podemos ver un esquema general en la figura~\ref{fig:arquitectura}
@@ -85,3 +82,28 @@ Podemos ver un esquema general en la figura~\ref{fig:arquitectura}
 \item El módulo \textbf{Get XY} es el encargado de hacer operaciones sobre los pixeles, utilizando varias encarnaciones de los módulos \textbf{SUM} y \textbf{MULTIPLY}. Allí también se realiza el cargado de las tablas de seno, coseno y la imagen.
 \item Finalmente, el módulo \textbf{VGA SYNC} es el encargado de la salida al monitor.
 \end{itemize}
+
+\subsection{Utilización}
+La fpga, una vez programada y enchufada a un monitor, puede ya utilizarse. El mappeo de los controles es el siguiente:
+
+\begin{itemize}
+\item Switches 3 a 0: Son los que configuran los distintos modos de manipulación del bitmap.
+\item Switches 7 a 6: Son los que configuran la parte entera de la velocidad de cambio de cada modo. Por ejemplo, al mover horizontalmente el bitmap, este número regula que tan rápido se mueve.
+\item Switches 5 a 4: controlan la parte decimal del punto anterior.
+\item Botones arriba/abajo: Modifican los valores de cada modo. En sentido práctico, si estamos en el modo vertical, estos harán que se mueva el bitmap hacia arriba o abajo.
+\item Botón central: Resetea todos los valores.
+\end{itemize}
+
+Los distintos modos configurables por los switches 3 a 0 son:
+\begin{itemize}
+\item \textbf{0000}: Modo en el cual el bitmap se moverá horizontalmente.
+\item \textbf{0001}: Modo en el cual el bitmap se moverá verticalmente.
+\item \textbf{0010}: Modo en el cual el punto relativo de giro del bitmap se moverá horizontalmente.
+\item \textbf{0011}: Modo en el cual el punto relativo de giro del bitmap se moverá verticalmente.
+\item \textbf{0100}: Modo en el cual la textura del bitmap se multiplicará horizontalmente.
+\item \textbf{0101}: Modo en el cual la textura del bitmap se multiplicará verticalmente.
+\item \textbf{0110}: Modo en el cual el bitmap escalará horizontalmente.
+\item \textbf{0111}: Modo en el cual el bitmap escalará verticalmente.
+\item \textbf{1000}: Modo en el cual el bitmap rotará en relación al punto relativo de giro.
+\end{itemize}
+
