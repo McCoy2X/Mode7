@@ -51,7 +51,7 @@ $
 
 \subsection{Detalles de la implementación}
 \subsubsection{Utilización de memoria}
-Uno de los primeros problemas a solucionar fue cómo calcular los valores de las funciones seno y coseno, ya que la fpga no posee una fpu. La solución consistió en guardar en dos tablas $360$ valores correspondientes a parámetros angulares para dichas funciones (de 0 a 359 grados). Cada resultado se guardó en 16 bits en forma signo más magnitud, con 7 bits para la parte entera y 8 para la decimal, lo que en total ocupó 720 bytes de memoria.
+Uno de los primeros problemas a solucionar fue cómo calcular los valores de las funciones seno y coseno, ya que la fpga no posee una fpu. La solución consistió en guardar en dos tablas $360$ valores correspondientes a parámetros angulares para dichas funciones (de 0 a 359 grados). Cada resultado se guardó en 16 bits en forma signo más magnitud, con 7 bits para la parte entera y 8 para la decimal, lo que en total ocupó 720 bytes de memoria. Es necesario agregar que las operaciones matemáticas se realizaron con 24 bits signo más magnitud (15 bits parte entera, 8 parte decimal) por la resolución que utiliza la salida VGA.
 \par La imagen a cargar, por otro lado, es de 64 por 64 pixeles, y cada pixel tiene tres bits para el canal rojo, tres bits para el verde y dos para el azul. Esto resulta en un bitmap que tiene 4096 valores de 8 bits y ocupa en memoria 4096 bytes. En la figura~\ref{fig:chess} se puede observar el bitmap utilizado. 
 
 \begin{figure}[h!]
@@ -91,7 +91,7 @@ La fpga, una vez programada y enchufada a un monitor, puede ya utilizarse. El ma
 \item Switches 7 a 6: Son los que configuran la parte entera de la velocidad de cambio de cada modo. Por ejemplo, al mover horizontalmente el bitmap, este número regula que tan rápido se mueve.
 \item Switches 5 a 4: controlan la parte decimal del punto anterior.
 \item Botones arriba/abajo: Modifican los valores de cada modo. En sentido práctico, si estamos en el modo vertical, estos harán que se mueva el bitmap hacia arriba o abajo.
-\item Botón central: Resetea todos los valores.
+\item Botón central: Resetea todos los valores y el circuito de la fpga.
 \end{itemize}
 
 Los distintos modos configurables por los switches 3 a 0 son:
