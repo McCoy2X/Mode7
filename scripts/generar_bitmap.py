@@ -5,7 +5,7 @@ def imprimir_pixel(bitmap_file,black):
         bitmap_file.write('00000000')
         bitmap_file.write('\n')
     else:
-        bitmap_file.write('11111111')
+        bitmap_file.write('00000111')
         bitmap_file.write('\n')
 
 def main():
