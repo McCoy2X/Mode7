@@ -1,0 +1,142 @@
+//! **************************************************************************
+// Written by: Map P.15xf on Fri Jul 10 10:35:35 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "clk" LOCATE = SITE "V10" LEVEL 1;
+COMP "von" LOCATE = SITE "V15" LEVEL 1;
+COMP "an<0>" LOCATE = SITE "N16" LEVEL 1;
+COMP "an<1>" LOCATE = SITE "N15" LEVEL 1;
+COMP "an<2>" LOCATE = SITE "P18" LEVEL 1;
+COMP "an<3>" LOCATE = SITE "P17" LEVEL 1;
+COMP "switches<0>" LOCATE = SITE "T10" LEVEL 1;
+COMP "switches<1>" LOCATE = SITE "T9" LEVEL 1;
+COMP "switches<2>" LOCATE = SITE "V9" LEVEL 1;
+COMP "switches<3>" LOCATE = SITE "M8" LEVEL 1;
+COMP "switches<4>" LOCATE = SITE "N8" LEVEL 1;
+COMP "switches<5>" LOCATE = SITE "U8" LEVEL 1;
+COMP "switches<6>" LOCATE = SITE "V8" LEVEL 1;
+COMP "switches<7>" LOCATE = SITE "T5" LEVEL 1;
+COMP "btn_minus" LOCATE = SITE "C9" LEVEL 1;
+COMP "hsync" LOCATE = SITE "N6" LEVEL 1;
+COMP "reset" LOCATE = SITE "B8" LEVEL 1;
+COMP "ptick" LOCATE = SITE "U15" LEVEL 1;
+COMP "vsync" LOCATE = SITE "P7" LEVEL 1;
+COMP "rgb<0>" LOCATE = SITE "U7" LEVEL 1;
+COMP "rgb<1>" LOCATE = SITE "V7" LEVEL 1;
+COMP "rgb<2>" LOCATE = SITE "N7" LEVEL 1;
+COMP "rgb<3>" LOCATE = SITE "P8" LEVEL 1;
+COMP "rgb<4>" LOCATE = SITE "T6" LEVEL 1;
+COMP "rgb<5>" LOCATE = SITE "V6" LEVEL 1;
+COMP "rgb<6>" LOCATE = SITE "R7" LEVEL 1;
+COMP "rgb<7>" LOCATE = SITE "T7" LEVEL 1;
+COMP "seg<0>" LOCATE = SITE "T17" LEVEL 1;
+COMP "seg<1>" LOCATE = SITE "T18" LEVEL 1;
+COMP "seg<2>" LOCATE = SITE "U17" LEVEL 1;
+COMP "seg<3>" LOCATE = SITE "U18" LEVEL 1;
+COMP "seg<4>" LOCATE = SITE "M14" LEVEL 1;
+COMP "seg<5>" LOCATE = SITE "N14" LEVEL 1;
+COMP "seg<6>" LOCATE = SITE "L14" LEVEL 1;
+COMP "seg<7>" LOCATE = SITE "M13" LEVEL 1;
+COMP "btn_plus" LOCATE = SITE "A8" LEVEL 1;
+TIMEGRP sys_clk_pin = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL
+        "rgb_reg_3" BEL "values/sevenDisplay/disp/q_reg_17" BEL
+        "values/sevenDisplay/disp/q_reg_16" BEL
+        "values/sevenDisplay/disp/q_reg_15" BEL
+        "values/sevenDisplay/disp/q_reg_14" BEL
+        "values/sevenDisplay/disp/q_reg_13" BEL
+        "values/sevenDisplay/disp/q_reg_12" BEL
+        "values/sevenDisplay/disp/q_reg_11" BEL
+        "values/sevenDisplay/disp/q_reg_10" BEL
+        "values/sevenDisplay/disp/q_reg_9" BEL
+        "values/sevenDisplay/disp/q_reg_8" BEL
+        "values/sevenDisplay/disp/q_reg_7" BEL
+        "values/sevenDisplay/disp/q_reg_6" BEL
+        "values/sevenDisplay/disp/q_reg_5" BEL
+        "values/sevenDisplay/disp/q_reg_4" BEL
+        "values/sevenDisplay/disp/q_reg_3" BEL
+        "values/sevenDisplay/disp/q_reg_2" BEL
+        "values/sevenDisplay/disp/q_reg_1" BEL
+        "values/sevenDisplay/disp/q_reg_0" BEL "values/clk_new/counter_reg_39"
+        BEL "values/clk_new/counter_reg_38" BEL
+        "values/clk_new/counter_reg_37" BEL "values/clk_new/counter_reg_36"
+        BEL "values/clk_new/counter_reg_35" BEL
+        "values/clk_new/counter_reg_34" BEL "values/clk_new/counter_reg_33"
+        BEL "values/clk_new/counter_reg_32" BEL
+        "values/clk_new/counter_reg_31" BEL "values/clk_new/counter_reg_30"
+        BEL "values/clk_new/counter_reg_29" BEL
+        "values/clk_new/counter_reg_28" BEL "values/clk_new/counter_reg_27"
+        BEL "values/clk_new/counter_reg_26" BEL
+        "values/clk_new/counter_reg_25" BEL "values/clk_new/counter_reg_24"
+        BEL "values/clk_new/counter_reg_23" BEL
+        "values/clk_new/counter_reg_22" BEL "values/clk_new/counter_reg_21"
+        BEL "values/clk_new/counter_reg_20" BEL
+        "values/clk_new/counter_reg_19" BEL "values/clk_new/counter_reg_18"
+        BEL "values/clk_new/counter_reg_17" BEL
+        "values/clk_new/counter_reg_16" BEL "values/clk_new/counter_reg_15"
+        BEL "values/clk_new/counter_reg_14" BEL
+        "values/clk_new/counter_reg_13" BEL "values/clk_new/counter_reg_12"
+        BEL "values/clk_new/counter_reg_11" BEL
+        "values/clk_new/counter_reg_10" BEL "values/clk_new/counter_reg_9" BEL
+        "values/clk_new/counter_reg_8" BEL "values/clk_new/counter_reg_7" BEL
+        "values/clk_new/counter_reg_6" BEL "values/clk_new/counter_reg_5" BEL
+        "values/clk_new/counter_reg_4" BEL
+        "values/debounce_minus/state_reg_FSM_FFd1" BEL
+        "values/debounce_minus/state_reg_FSM_FFd2" BEL
+        "values/debounce_minus/q_reg_20" BEL "values/debounce_minus/q_reg_19"
+        BEL "values/debounce_minus/q_reg_18" BEL
+        "values/debounce_minus/q_reg_17" BEL "values/debounce_minus/q_reg_16"
+        BEL "values/debounce_minus/q_reg_15" BEL
+        "values/debounce_minus/q_reg_14" BEL "values/debounce_minus/q_reg_13"
+        BEL "values/debounce_minus/q_reg_12" BEL
+        "values/debounce_minus/q_reg_11" BEL "values/debounce_minus/q_reg_10"
+        BEL "values/debounce_minus/q_reg_9" BEL
+        "values/debounce_minus/q_reg_8" BEL "values/debounce_minus/q_reg_7"
+        BEL "values/debounce_minus/q_reg_6" BEL
+        "values/debounce_minus/q_reg_5" BEL "values/debounce_minus/q_reg_4"
+        BEL "values/debounce_minus/q_reg_3" BEL
+        "values/debounce_minus/q_reg_2" BEL "values/debounce_minus/q_reg_1"
+        BEL "values/debounce_minus/q_reg_0" BEL
+        "values/debounce_plus/state_reg_FSM_FFd1" BEL
+        "values/debounce_plus/state_reg_FSM_FFd2" BEL
+        "values/debounce_plus/q_reg_20" BEL "values/debounce_plus/q_reg_19"
+        BEL "values/debounce_plus/q_reg_18" BEL
+        "values/debounce_plus/q_reg_17" BEL "values/debounce_plus/q_reg_16"
+        BEL "values/debounce_plus/q_reg_15" BEL
+        "values/debounce_plus/q_reg_14" BEL "values/debounce_plus/q_reg_13"
+        BEL "values/debounce_plus/q_reg_12" BEL
+        "values/debounce_plus/q_reg_11" BEL "values/debounce_plus/q_reg_10"
+        BEL "values/debounce_plus/q_reg_9" BEL "values/debounce_plus/q_reg_8"
+        BEL "values/debounce_plus/q_reg_7" BEL "values/debounce_plus/q_reg_6"
+        BEL "values/debounce_plus/q_reg_5" BEL "values/debounce_plus/q_reg_4"
+        BEL "values/debounce_plus/q_reg_3" BEL "values/debounce_plus/q_reg_2"
+        BEL "values/debounce_plus/q_reg_1" BEL "values/debounce_plus/q_reg_0"
+        BEL "vga_unit/h_count_reg_9" BEL "vga_unit/h_count_reg_8" BEL
+        "vga_unit/h_count_reg_7" BEL "vga_unit/h_count_reg_6" BEL
+        "vga_unit/h_count_reg_5" BEL "vga_unit/h_count_reg_4" BEL
+        "vga_unit/h_count_reg_3" BEL "vga_unit/h_count_reg_2" BEL
+        "vga_unit/h_count_reg_1" BEL "vga_unit/h_count_reg_0" BEL
+        "vga_unit/v_count_reg_9" BEL "vga_unit/v_count_reg_8" BEL
+        "vga_unit/v_count_reg_7" BEL "vga_unit/v_count_reg_6" BEL
+        "vga_unit/v_count_reg_5" BEL "vga_unit/v_count_reg_4" BEL
+        "vga_unit/v_count_reg_3" BEL "vga_unit/v_count_reg_2" BEL
+        "vga_unit/v_count_reg_1" BEL "vga_unit/v_count_reg_0" BEL
+        "vga_unit/h_sync_reg" BEL "vga_unit/v_sync_reg" BEL
+        "vga_unit/pixel_tick" BEL "vga_unit/v_count_reg_1_1" BEL
+        "vga_unit/v_count_reg_2_1" BEL "vga_unit/v_count_reg_3_1" BEL
+        "vga_unit/v_count_reg_6_1" BEL "vga_unit/v_count_reg_7_1" BEL
+        "vga_unit/v_count_reg_5_1" BEL "vga_unit/v_count_reg_9_1" BEL
+        "vga_unit/h_count_reg_4_1" BEL "vga_unit/v_count_reg_1_2" BEL
+        "vga_unit/v_count_reg_2_2" BEL "vga_unit/v_count_reg_3_2" BEL
+        "vga_unit/v_count_reg_6_2" BEL "vga_unit/v_count_reg_7_2" BEL
+        "vga_unit/v_count_reg_9_2" BEL "vga_unit/v_count_reg_5_2" BEL
+        "vga_unit/v_count_reg_3_3" BEL "vga_unit/v_count_reg_2_3" BEL
+        "vga_unit/v_count_reg_4_1" BEL "vga_unit/v_count_reg_3_4" BEL
+        "vga_unit/v_count_reg_1_3" BEL "vga_unit/v_count_reg_6_3" BEL
+        "vga_unit/v_count_reg_5_3" BEL "vga_unit/v_count_reg_9_3" BEL
+        "vga_unit/h_count_reg_4_2" BEL "vga_unit/v_count_reg_7_3" BEL
+        "vga_unit/v_count_reg_1_4" BEL "vga_unit/v_count_reg_2_4" BEL
+        "vga_unit/v_count_reg_0_1" BEL "vga_unit/v_count_reg_0_2" BEL
+        "clk_BUFGP/BUFG";
+SCHEMATIC END;
+

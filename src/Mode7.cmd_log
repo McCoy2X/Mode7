@@ -1,0 +1,6 @@
+xst -intstyle ise -ifn "E:/SONTODOSPUTOS/Mode7/src/Mode7.xst" -ofn "E:/SONTODOSPUTOS/Mode7/src/Mode7.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc "Nexys3_Master (4).ucf" -p xc6slx16-csg324-3 Mode7.ngc Mode7.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o Mode7_map.ncd Mode7.ngd Mode7.pcf 
+par -w -intstyle ise -ol high -mt off Mode7_map.ncd Mode7.ncd Mode7.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml Mode7.twx Mode7.ncd -o Mode7.twr Mode7.pcf -ucf {Nexys3_Master (4).ucf} 
+bitgen -intstyle ise -f Mode7.ut Mode7.ncd 
